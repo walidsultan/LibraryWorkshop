@@ -36,9 +36,9 @@ public class LibraryMemberNewDialogController {
 	private Button btnAdd;
 	@FXML
 	private Button btnEdit;
-	
-	
+
 	private Stage dialogStage;
+	private LibraryMember currentMember;
 
 	@FXML
 	private void handleClose() {
@@ -66,19 +66,35 @@ public class LibraryMemberNewDialogController {
 		LibraryMembersFacade libraryMembersFacade = new LibraryMembersFacade();
 		libraryMembersFacade.addLibraryMember(libraryMember);
 
-		//Update Library Members table view
-		List<LibraryMember> libraryMembers= libraryMembersFacade.getAllLibraryMembers();
+		// Update Library Members table view
+		List<LibraryMember> libraryMembers = libraryMembersFacade
+				.getAllLibraryMembers();
 		libraryMembersTV.setItems(FXCollections
 				.observableArrayList(libraryMembers));
-		
+
 		this.dialogStage.close();
 	}
-	
+
 	@FXML
-	private void handleEditLibraryMember()
-	{
+	private void handleEditLibraryMember() {
+		currentMember.setMemberId(Integer.parseInt(txtMemberId.getText()));
+		currentMember.setFirstName(txtFirstName.getText());
+		currentMember.setLastName(txtLastName.getText());
+		currentMember.setPhone(txtPhone.getText());
+		Address address = new Address(txtStreet.getText(), txtCity.getText(),
+				txtState.getText(), txtZip.getText());
+		currentMember.setAddress(address);
 		
+		LibraryMembersFacade libraryMembersFacade = new LibraryMembersFacade();
+		libraryMembersFacade.editLibraryMember(currentMember);
 		
+		// Update Library Members table view
+				List<LibraryMember> libraryMembers = libraryMembersFacade
+						.getAllLibraryMembers();
+				libraryMembersTV.setItems(FXCollections
+						.observableArrayList(libraryMembers));
+				
+		this.dialogStage.close();
 	}
 
 	public void setDialogStage(Stage dialogStage) {
@@ -86,27 +102,25 @@ public class LibraryMemberNewDialogController {
 	}
 
 	public void setTargetLibraryMember(LibraryMember targetMember) {
+		currentMember = targetMember;
 		txtMemberId.setText(Integer.toString(targetMember.getMemberId()));
 		txtFirstName.setText(targetMember.getFirstName());
 		txtLastName.setText(targetMember.getLastName());
 		txtPhone.setText(targetMember.getPhone());
-		if(targetMember.getAddress()!=null)
-		{
-			Address address=targetMember.getAddress();
+		if (targetMember.getAddress() != null) {
+			Address address = targetMember.getAddress();
 			txtCity.setText(address.getCity());
 			txtState.setText(address.getState());
 			txtStreet.setText(address.getStreet());
 			txtZip.setText(address.getZip());
 		}
 	}
-	
-	public void setAddButtonVisibilty(boolean visible)
-	{
+
+	public void setAddButtonVisibilty(boolean visible) {
 		this.btnAdd.visibleProperty().set(visible);
 	}
 
-	public void setEditButtonVisibilty(boolean visible)
-	{
+	public void setEditButtonVisibilty(boolean visible) {
 		this.btnEdit.visibleProperty().set(visible);
 	}
 

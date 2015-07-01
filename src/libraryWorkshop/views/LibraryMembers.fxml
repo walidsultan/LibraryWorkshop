@@ -42,7 +42,7 @@
           <children>
             <Button mnemonicParsing="false" onAction="#showNewLibraryDialog" prefWidth="81.0" text="New" />
             <Button mnemonicParsing="false" onAction="#deleteLibraryMember" prefWidth="81.0" text="Delete" />
-            <Button mnemonicParsing="false" prefWidth="81.0" text="Edit" />
+            <Button mnemonicParsing="false" prefWidth="81.0" text="Edit"  onAction="#editLibraryMember"/>
           </children>
           <padding>
             <Insets left="25.0" right="25.0" top="220.0" />

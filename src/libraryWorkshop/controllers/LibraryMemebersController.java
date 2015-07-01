@@ -163,6 +163,23 @@ public class LibraryMemebersController implements BaseController {
 		}
 	}
 
+	@FXML
+	private void editLibraryMember()
+	{
+		int selectedIndex = libraryMembersTV.getSelectionModel()
+				.getSelectedIndex();
+		if (selectedIndex >= 0) {
+			showEditLibraryMember(libraryMembersTV.getItems().get(selectedIndex));
+		} else {
+			// Nothing selected
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("No Library Member Selected");
+			alert.setHeaderText(null);
+			alert.setContentText("Please select a Library Member in the table.");
+			alert.showAndWait();
+		}
+	}
+	
 	private void showEditLibraryMember(LibraryMember targetMember) {
 		try {
 			// Load the fxml file and create a new stage for the popup

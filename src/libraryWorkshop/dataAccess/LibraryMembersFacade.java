@@ -24,8 +24,7 @@ public class LibraryMembersFacade extends DataAccessBase implements
 		return null;
 	}
 
-	public void deleteLibraryMember(int index)
-	{
+	public void deleteLibraryMember(int index) {
 		ArrayList<LibraryMember> allMembers = getAllLibraryMembers();
 		allMembers.remove(index);
 		save(allMembers);
@@ -82,6 +81,19 @@ public class LibraryMembersFacade extends DataAccessBase implements
 				}
 			}
 		}
+	}
+
+	public void editLibraryMember(LibraryMember currentMember) {
+		ArrayList<LibraryMember> allMembers = getAllLibraryMembers();
+
+		for (int i = 0; i < allMembers.size(); i++) {
+			if (allMembers.get(i).getId().equals(currentMember.getId())) {
+				allMembers.remove(i);
+				allMembers.add(i, currentMember);
+			}
+		}
+
+		save(allMembers);
 	}
 
 }
