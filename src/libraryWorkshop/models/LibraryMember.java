@@ -1,14 +1,15 @@
 package libraryWorkshop.models;
 
-import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.UUID;
 
-public class LibraryMember extends Person  {
+public class LibraryMember extends Person {
 	private CheckoutRecord record = new CheckoutRecord();
 	private int memberId;
+	private UUID id;
 
 	public LibraryMember() {
-
+		id = UUID.randomUUID();
 	}
 
 	public void checkout(LendableCopy copy, LocalDate checkoutDate,
@@ -20,7 +21,12 @@ public class LibraryMember extends Person  {
 	}
 
 	public String toString() {
-		return "Checkout record for library member " + firstName +" " + lastName + ": " + record;
+		return "Checkout record for library member " + firstName + " "
+				+ lastName + ": " + record;
+	}
+
+	public UUID getId() {
+		return id;
 	}
 
 	public int getMemberId() {

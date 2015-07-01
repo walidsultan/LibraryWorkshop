@@ -18,7 +18,7 @@ import libraryWorkshop.models.LibraryMember;
 import libraryWorkshop.util.ScreenIndex;
 
 public class Main extends Application {
-
+	public static Stage mainPrimaryStage;
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -34,6 +34,7 @@ public class Main extends Application {
 			root.getChildren().addAll(mainContainer);
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
+			mainPrimaryStage=primaryStage;
 			primaryStage.show();
 
 		} catch (Exception e) {
@@ -49,7 +50,7 @@ public class Main extends Application {
 
 		if (libraryMembers == null || libraryMembers.size() == 0) {
 			libraryMembers = new ArrayList<LibraryMember>();
-			LibraryMember libraryMember = new LibraryMember() {
+			LibraryMember libraryMember = new LibraryMember(){
 
 				{
 					firstName = "Walid";
@@ -60,7 +61,18 @@ public class Main extends Application {
 				}
 			};
 			libraryMembersFacade.addLibraryMember(libraryMember);
-			libraryMembersFacade.saveLibraryMember(libraryMember);
+			
+			LibraryMember libraryMember2 = new LibraryMember(){
+
+				{
+					firstName = "Yevheniy";
+					lastName = "Rohozhnikov";
+					phone = "8885551122";
+					address = new Address("12 Nth Street", "FairField", "IA",
+							"52557");
+				}
+			};
+			libraryMembersFacade.addLibraryMember(libraryMember2);
 		}
 
 		launch(args);

@@ -3,7 +3,7 @@ package libraryWorkshop.controllers;
 import javafx.fxml.FXML;
 import libraryWorkshop.util.ScreenIndex;
 
-public class MainController implements BaseScreen {
+public class MainController implements BaseController {
 	ScreensController myController;
 
 	public void setScreenParent(ScreensController screenParent) {

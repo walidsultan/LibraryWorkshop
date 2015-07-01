@@ -11,50 +11,19 @@ import java.util.List;
 
 import libraryWorkshop.models.LibraryMember;
 
-public class LibraryMembersFacade implements LibraryMembers {
-	public static final String OUTPUT_DIR = System.getProperty("user.dir")
-			+ "\\src\\libraryWorkshop\\storage\\";
-	public static final String DATE_PATTERN = "MM/dd/yyyy";
+public class LibraryMembersFacade extends DataAccessBase implements
+		LibraryMembers {
 
 	List<LibraryMember> allMembers = null;
 
-	public void saveLibraryMember(LibraryMember member) {
-		ObjectOutputStream out = null;
-		try {
-			Path path = FileSystems.getDefault().getPath(OUTPUT_DIR,
-					member.getFirstName() + member.getLastName());
-			out = new ObjectOutputStream(Files.newOutputStream(path));
-			out.writeObject(member);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (out != null) {
-				try {
-					out.close();
-				} catch (Exception e) {
-				}
+	public LibraryMember getLibraryMember(String name) {
+		List<LibraryMember> allMembers = getAllLibraryMembers();
+		for (LibraryMember member : allMembers) {
+			if (member.getFirstName().concat(member.getLastName()).equals(name)) {
+				return member;
 			}
 		}
-	}
-
-	public LibraryMember readLibraryMember(String name) {
-		ObjectInputStream in = null;
-		LibraryMember member = null;
-		try {
-			Path path = FileSystems.getDefault().getPath(OUTPUT_DIR, name);
-			in = new ObjectInputStream(Files.newInputStream(path));
-			member = (LibraryMember) in.readObject();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (in != null) {
-				try {
-					in.close();
-				} catch (Exception e) {
-				}
-			}
-		}
-		return member;
+		return null;
 	}
 
 	public void addLibraryMember(LibraryMember member) {
@@ -65,7 +34,7 @@ public class LibraryMembersFacade implements LibraryMembers {
 		}
 		allMembers.add(member);
 
-		save();
+		save(allMembers);
 	}
 
 	public List<LibraryMember> getAllLibraryMembers() {
@@ -73,9 +42,11 @@ public class LibraryMembersFacade implements LibraryMembers {
 
 		try {
 			Path path = FileSystems.getDefault().getPath(OUTPUT_DIR,
-					"libraryMembers");
-			in = new ObjectInputStream(Files.newInputStream(path));
-			allMembers = (List<LibraryMember>) in.readObject();
+					"LibraryMembers");
+			if (path.toFile().isFile()) {
+				in = new ObjectInputStream(Files.newInputStream(path));
+				allMembers = (List<LibraryMember>) in.readObject();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -89,13 +60,13 @@ public class LibraryMembersFacade implements LibraryMembers {
 		return allMembers;
 	}
 
-	public void save() {
+	private void save(List<LibraryMember> list) {
 		ObjectOutputStream out = null;
 		try {
 			Path path = FileSystems.getDefault().getPath(OUTPUT_DIR,
-					"libraryMembers");
+					"LibraryMembers");
 			out = new ObjectOutputStream(Files.newOutputStream(path));
-			out.writeObject(allMembers);
+			out.writeObject(list);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -107,5 +78,5 @@ public class LibraryMembersFacade implements LibraryMembers {
 			}
 		}
 	}
-
+	
 }

@@ -2,6 +2,9 @@ package libraryWorkshop.models;
 
 import java.io.Serializable;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Address implements Serializable{
 	
 	
@@ -49,5 +52,14 @@ public class Address implements Serializable{
 		this.zip = zip;
 	}
 	
+	public StringProperty getCityProperty()
+	{
+		return new SimpleStringProperty(this.city);
+	}
+
+	public StringProperty getStateProperty()
+	{
+		return new SimpleStringProperty(this.state);
+	}
 	private static final long serialVersionUID = -1631307052644801418L;
 }
