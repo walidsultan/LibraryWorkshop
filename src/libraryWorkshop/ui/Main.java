@@ -19,6 +19,7 @@ import libraryWorkshop.util.ScreenIndex;
 
 public class Main extends Application {
 	public static Stage mainPrimaryStage;
+
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -34,7 +35,7 @@ public class Main extends Application {
 			root.getChildren().addAll(mainContainer);
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
-			mainPrimaryStage=primaryStage;
+			mainPrimaryStage = primaryStage;
 			primaryStage.show();
 
 		} catch (Exception e) {
@@ -50,26 +51,42 @@ public class Main extends Application {
 
 		if (libraryMembers == null || libraryMembers.size() == 0) {
 			libraryMembers = new ArrayList<LibraryMember>();
-			LibraryMember libraryMember = new LibraryMember(){
+			LibraryMember libraryMember = new LibraryMember() {
+
+				private static final long serialVersionUID = -870126890693540448L;
 
 				{
 					firstName = "Walid";
 					lastName = "Sultan";
 					phone = "6419808612";
-					address = new Address("Nth Street", "FairField", "IA",
-							"52557");
+					address = new Address() {
+						{
+							setStreet("Nth Street");
+							setCity("FairField");
+							setState("IA");
+							setZip("52557");
+						}
+					};
 				}
 			};
 			libraryMembersFacade.addLibraryMember(libraryMember);
-			
-			LibraryMember libraryMember2 = new LibraryMember(){
+
+			LibraryMember libraryMember2 = new LibraryMember() {
+
+				private static final long serialVersionUID = -7331845212396267495L;
 
 				{
 					firstName = "Yevheniy";
 					lastName = "Rohozhnikov";
 					phone = "8885551122";
-					address = new Address("12 Nth Street", "FairField", "IA",
-							"52557");
+					address = new Address() {
+						{
+							setStreet("12 Nth Street");
+							setCity("FairField");
+							setState("IA");
+							setZip("52557");
+						}
+					};
 				}
 			};
 			libraryMembersFacade.addLibraryMember(libraryMember2);

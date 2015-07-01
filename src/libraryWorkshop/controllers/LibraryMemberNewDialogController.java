@@ -1,6 +1,5 @@
 package libraryWorkshop.controllers;
 
-import java.io.Serializable;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -36,12 +35,21 @@ public class LibraryMemberNewDialogController {
 	@FXML
 	private void handleAddLibraryMember() {
 		LibraryMember libraryMember = new LibraryMember() {
+			
+			private static final long serialVersionUID = 6567334998212543440L;
+
 			{
 				firstName = txtFirstName.getText();
 				lastName = txtLastName.getText();
 				phone = txtPhone.getText();
-				address = new Address(txtStreet.getText(), txtCity.getText(),
-						txtState.getText(), txtZip.getText());
+				address = new Address() {
+					{
+						setStreet(txtStreet.getText());
+						setCity(txtCity.getText());
+						setState(txtState.getText());
+						setZip( txtZip.getText());
+					}
+				};
 			}
 		};
 

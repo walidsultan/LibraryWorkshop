@@ -14,7 +14,7 @@ import libraryWorkshop.models.LibraryMember;
 public class LibraryMembersFacade extends DataAccessBase implements
 		LibraryMembers {
 
-	List<LibraryMember> allMembers = null;
+	ArrayList<LibraryMember> allMembers = null;
 
 	public LibraryMember getLibraryMember(String name) {
 		List<LibraryMember> allMembers = getAllLibraryMembers();
@@ -37,7 +37,7 @@ public class LibraryMembersFacade extends DataAccessBase implements
 		save(allMembers);
 	}
 
-	public List<LibraryMember> getAllLibraryMembers() {
+	public ArrayList<LibraryMember> getAllLibraryMembers() {
 		ObjectInputStream in = null;
 
 		try {
@@ -45,7 +45,7 @@ public class LibraryMembersFacade extends DataAccessBase implements
 					"LibraryMembers");
 			if (path.toFile().isFile()) {
 				in = new ObjectInputStream(Files.newInputStream(path));
-				allMembers = (List<LibraryMember>) in.readObject();
+				allMembers = (ArrayList<LibraryMember>) in.readObject();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -60,7 +60,7 @@ public class LibraryMembersFacade extends DataAccessBase implements
 		return allMembers;
 	}
 
-	private void save(List<LibraryMember> list) {
+	private void save(ArrayList<LibraryMember> list) {
 		ObjectOutputStream out = null;
 		try {
 			Path path = FileSystems.getDefault().getPath(OUTPUT_DIR,
