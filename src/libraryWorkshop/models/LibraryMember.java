@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class LibraryMember extends Person {
+public class LibraryMember extends Person implements Serializable {
 	private CheckoutRecord record = new CheckoutRecord();
 	private int memberId;
 	private UUID id;

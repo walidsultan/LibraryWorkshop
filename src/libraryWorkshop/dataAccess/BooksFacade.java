@@ -9,46 +9,33 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import libraryWorkshop.models.Book;
 import libraryWorkshop.models.LibraryMember;
 
-public class LibraryMembersFacade extends DataAccessBase implements
-		LibraryMembers {
+public class BooksFacade extends DataAccessBase  {
 
-	public LibraryMember getLibraryMember(String name) {
-		List<LibraryMember> allMembers = getAllLibraryMembers();
-		for (LibraryMember member : allMembers) {
-			if (member.getFirstName().concat(member.getLastName()).equals(name)) {
-				return member;
-			}
+	ArrayList<Book> allBooks = null;
+
+	public void addBook(Book book) {
+
+		allBooks = getAllBooks();
+		if (allBooks == null) {
+			allBooks = new ArrayList<Book>();
 		}
-		return null;
+		allBooks.add(book);
+
+		save(allBooks);
 	}
 
-	public void deleteLibraryMember(int index)
-	{
-		ArrayList<LibraryMember> allMembers = getAllLibraryMembers();
-		allMembers.remove(index);
-		save(allMembers);
-	}
-
-	public void addLibraryMember(LibraryMember member) {
-
-		ArrayList<LibraryMember> allMembers = getAllLibraryMembers();
-
-		allMembers.add(member);
-
-		save(allMembers);
-	}
-
-	public ArrayList<LibraryMember> getAllLibraryMembers() {
+	public ArrayList<Book> getAllBooks() {
 		ObjectInputStream in = null;
-		ArrayList<LibraryMember> allMembers = new ArrayList<LibraryMember>();
+
 		try {
 			Path path = FileSystems.getDefault().getPath(OUTPUT_DIR,
-					"LibraryMembers");
+					"Books");
 			if (path.toFile().isFile()) {
 				in = new ObjectInputStream(Files.newInputStream(path));
-				allMembers = (ArrayList<LibraryMember>) in.readObject();
+				allBooks = (ArrayList<Book>) in.readObject();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -60,18 +47,19 @@ public class LibraryMembersFacade extends DataAccessBase implements
 				}
 			}
 		}
-		return allMembers;
+		return allBooks;
 	}
 
-	private void save(ArrayList<LibraryMember> list) {
-
+	private void save(ArrayList<Book> list) {
+			
 		ObjectOutputStream out = null;
 		try {
 			Path path = FileSystems.getDefault().getPath(OUTPUT_DIR,
-					"LibraryMembers");
+					"Books");
 			out = new ObjectOutputStream(Files.newOutputStream(path));
 			out.writeObject(list);
-
+			
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -83,5 +71,5 @@ public class LibraryMembersFacade extends DataAccessBase implements
 			}
 		}
 	}
-
+	
 }

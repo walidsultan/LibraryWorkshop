@@ -5,13 +5,19 @@ import java.io.Serializable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Address implements Serializable{
-	
-	
+public class Address implements Serializable {
+
 	private String street;
 	private String city;
 	private String state;
 	private String zip;
+
+	public Address(String street, String city, String state, String zip) {
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+	}
 
 	public String getStreet() {
 		return street;
@@ -44,15 +50,14 @@ public class Address implements Serializable{
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
-	
-	public StringProperty getCityProperty()
-	{
+
+	public StringProperty getCityProperty() {
 		return new SimpleStringProperty(this.city);
 	}
 
-	public StringProperty getStateProperty()
-	{
+	public StringProperty getStateProperty() {
 		return new SimpleStringProperty(this.state);
 	}
+
 	private static final long serialVersionUID = -1631307052644801418L;
 }

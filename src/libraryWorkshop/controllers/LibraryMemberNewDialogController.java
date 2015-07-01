@@ -1,7 +1,10 @@
 package libraryWorkshop.controllers;
 
+import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import libraryWorkshop.dataAccess.LibraryMembersFacade;
@@ -31,30 +34,31 @@ public class LibraryMemberNewDialogController {
 	private void handleClose() {
 		this.dialogStage.close();
 	}
+	
+	@FXML
+	private TableView<LibraryMember> libraryMembersTV;
+
+	public void setLibraryMembersTV(TableView<LibraryMember> libraryMembersTV) {
+		this.libraryMembersTV = libraryMembersTV;
+	}
 
 	@FXML
 	private void handleAddLibraryMember() {
-		LibraryMember libraryMember = new LibraryMember() {
-			
-			private static final long serialVersionUID = 6567334998212543440L;
+		LibraryMember libraryMember = new LibraryMember();
+		libraryMember.setFirstName(txtFirstName.getText());
+		libraryMember.setLastName(txtLastName.getText());
+		libraryMember.setPhone(txtPhone.getText());
+		Address address = new Address(txtStreet.getText(), txtCity.getText(),
+				txtState.getText(), txtZip.getText());
+		libraryMember.setAddress(address);
 
-			{
-				firstName = txtFirstName.getText();
-				lastName = txtLastName.getText();
-				phone = txtPhone.getText();
-				address = new Address() {
-					{
-						setStreet(txtStreet.getText());
-						setCity(txtCity.getText());
-						setState(txtState.getText());
-						setZip( txtZip.getText());
-					}
-				};
-			}
-		};
-
-		LibraryMembersFacade libraryMembersFacade =new LibraryMembersFacade();
+		LibraryMembersFacade libraryMembersFacade = new LibraryMembersFacade();
 		libraryMembersFacade.addLibraryMember(libraryMember);
+
+		//Update Library Members table view
+		List<LibraryMember> libraryMembers= libraryMembersFacade.getAllLibraryMembers();
+		libraryMembersTV.setItems(FXCollections
+				.observableArrayList(libraryMembers));
 		
 		this.dialogStage.close();
 	}

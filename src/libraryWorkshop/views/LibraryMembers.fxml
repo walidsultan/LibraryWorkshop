@@ -24,7 +24,7 @@
         <VBox prefHeight="531.0" prefWidth="124.0" spacing="25.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
           <children>
             <Button mnemonicParsing="false" prefWidth="81.0" text="New" onAction="#showNewLibraryDialog" />
-            <Button mnemonicParsing="false" prefWidth="81.0" text="Delete" />
+            <Button mnemonicParsing="false" prefWidth="81.0" text="Delete" onAction="#deleteLibraryMember" />
           </children>
           <padding>
             <Insets left="25.0" right="25.0" top="460.0" />

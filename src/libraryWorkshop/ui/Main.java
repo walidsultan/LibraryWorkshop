@@ -12,8 +12,10 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import libraryWorkshop.controllers.ScreensController;
+import libraryWorkshop.dataAccess.BooksFacade;
 import libraryWorkshop.dataAccess.LibraryMembersFacade;
 import libraryWorkshop.models.Address;
+import libraryWorkshop.models.Book;
 import libraryWorkshop.models.LibraryMember;
 import libraryWorkshop.util.ScreenIndex;
 
@@ -49,49 +51,33 @@ public class Main extends Application {
 		List<LibraryMember> libraryMembers = libraryMembersFacade
 				.getAllLibraryMembers();
 
+		
+
 		if (libraryMembers == null || libraryMembers.size() == 0) {
 			libraryMembers = new ArrayList<LibraryMember>();
-			LibraryMember libraryMember = new LibraryMember() {
+			LibraryMember libraryMember1 = new LibraryMember();
+			libraryMember1.setFirstName("Walid");
+			libraryMember1.setLastName("Sultan");
+			libraryMember1.setPhone("6419808612");
+			Address address= new Address("Nth Street","FairField","IA","52557");
+			libraryMember1.setAddress(address);
+			libraryMembersFacade.addLibraryMember(libraryMember1);
 
-				private static final long serialVersionUID = -870126890693540448L;
 
-				{
-					firstName = "Walid";
-					lastName = "Sultan";
-					phone = "6419808612";
-					address = new Address() {
-						{
-							setStreet("Nth Street");
-							setCity("FairField");
-							setState("IA");
-							setZip("52557");
-						}
-					};
-				}
-			};
-			libraryMembersFacade.addLibraryMember(libraryMember);
 
-			LibraryMember libraryMember2 = new LibraryMember() {
-
-				private static final long serialVersionUID = -7331845212396267495L;
-
-				{
-					firstName = "Yevheniy";
-					lastName = "Rohozhnikov";
-					phone = "8885551122";
-					address = new Address() {
-						{
-							setStreet("12 Nth Street");
-							setCity("FairField");
-							setState("IA");
-							setZip("52557");
-						}
-					};
-				}
-			};
+			LibraryMember libraryMember2 = new LibraryMember();
+			libraryMember2.setFirstName("Yevheniy");
+			libraryMember2.setLastName("Rohozhnikov");
+			libraryMember2.setPhone("8885554545");
+			address= new Address("12 Nth Street","FairField","IA","52557");
+			libraryMember2.setAddress(address);
 			libraryMembersFacade.addLibraryMember(libraryMember2);
 		}
 
+//		BooksFacade booksFacade=new BooksFacade();
+//		
+//		List<Book> books=booksFacade.getAllBooks();
+		
 		launch(args);
 	}
 }
