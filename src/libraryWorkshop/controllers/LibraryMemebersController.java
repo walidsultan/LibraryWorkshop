@@ -13,6 +13,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -28,6 +29,8 @@ public class LibraryMemebersController implements BaseController {
 	private TableView<LibraryMember> libraryMembersTV;
 
 	@FXML
+	private TableColumn<LibraryMember, Integer> memberIdCol;
+	@FXML
 	private TableColumn<LibraryMember, String> firstNameCol;
 	@FXML
 	private TableColumn<LibraryMember, String> lastNameCol;
@@ -38,6 +41,9 @@ public class LibraryMemebersController implements BaseController {
 	@FXML
 	private TableColumn<LibraryMember, String> stateCol;
 
+	@FXML
+	private TextField txtSearchMemberId;
+
 	public void setScreenParent(ScreensController screenParent) {
 		myController = screenParent;
 	}
@@ -47,6 +53,10 @@ public class LibraryMemebersController implements BaseController {
 		LibraryMembersFacade libraryMembersFacade = new LibraryMembersFacade();
 		List<LibraryMember> libraryMembers = libraryMembersFacade
 				.getAllLibraryMembers();
+
+		memberIdCol
+				.setCellValueFactory(new PropertyValueFactory<LibraryMember, Integer>(
+						"memberId"));
 
 		firstNameCol
 				.setCellValueFactory(new PropertyValueFactory<LibraryMember, String>(
@@ -67,12 +77,14 @@ public class LibraryMemebersController implements BaseController {
 				.observableArrayList(libraryMembers));
 		;
 	}
-	
+
 	@FXML
-	private void showNewLibraryDialog(){
+	private void showNewLibraryDialog() {
 		try {
 			// Load the fxml file and create a new stage for the popup
-			FXMLLoader loader = new FXMLLoader(Main.class.getResource("..\\views\\LibraryMemberNewDialog.fxml"));
+			FXMLLoader loader = new FXMLLoader(
+					Main.class
+							.getResource("..\\views\\LibraryMemberNewDialog.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("New Library Member");
@@ -80,23 +92,27 @@ public class LibraryMemebersController implements BaseController {
 			dialogStage.initOwner(Main.mainPrimaryStage);
 			Scene scene = new Scene(page);
 			dialogStage.setScene(scene);
-			
-			LibraryMemberNewDialogController controller = loader.getController();
+
+			LibraryMemberNewDialogController controller = loader
+					.getController();
 			controller.setDialogStage(dialogStage);
 			controller.setLibraryMembersTV(libraryMembersTV);
+			controller.setAddButtonVisibilty(true);
+			controller.setEditButtonVisibilty(false);
 			
 			// Show the dialog and wait until the user closes it
 			dialogStage.showAndWait();
-			
+
 		} catch (IOException e) {
 			// Exception gets thrown if the fxml file could not be loaded
 			e.printStackTrace();
-		}	
+		}
 	}
-	
+
 	@FXML
-	private void deleteLibraryMember(){
-		int selectedIndex = libraryMembersTV.getSelectionModel().getSelectedIndex();
+	private void deleteLibraryMember() {
+		int selectedIndex = libraryMembersTV.getSelectionModel()
+				.getSelectedIndex();
 		if (selectedIndex >= 0) {
 			LibraryMembersFacade libraryMembersFacade = new LibraryMembersFacade();
 			libraryMembersFacade.deleteLibraryMember(selectedIndex);
@@ -109,5 +125,73 @@ public class LibraryMemebersController implements BaseController {
 			alert.setContentText("Please select a Library Member in the table.");
 			alert.showAndWait();
 		}
+	}
+
+	@FXML
+	private void searchForLibraryMember() {
+		LibraryMembersFacade libraryMembersFacade = new LibraryMembersFacade();
+		List<LibraryMember> libraryMembers = libraryMembersFacade
+				.getAllLibraryMembers();
+
+		if (txtSearchMemberId.getText().matches("\\d+")) {
+
+			LibraryMember targetMember = null;
+			for (LibraryMember member : libraryMembers) {
+				if (member.getMemberId() == Integer.parseInt(txtSearchMemberId
+						.getText())) {
+					targetMember = member;
+					break;
+				}
+			}
+
+			if (targetMember != null) {
+				showEditLibraryMember(targetMember);
+			} else {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Library Member Not Found");
+				alert.setHeaderText(null);
+				alert.setContentText("The library member with Id "
+						+ txtSearchMemberId.getText() + " wasn't found.");
+				alert.showAndWait();
+			}
+		} else {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Wrong Input");
+			alert.setHeaderText(null);
+			alert.setContentText("Please enter valid Member Id");
+			alert.showAndWait();
+		}
+	}
+
+	private void showEditLibraryMember(LibraryMember targetMember) {
+		try {
+			// Load the fxml file and create a new stage for the popup
+			FXMLLoader loader = new FXMLLoader(
+					Main.class
+							.getResource("..\\views\\LibraryMemberNewDialog.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Edit Library Member");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(Main.mainPrimaryStage);
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			LibraryMemberNewDialogController controller = loader
+					.getController();
+			controller.setDialogStage(dialogStage);
+			controller.setLibraryMembersTV(libraryMembersTV);
+			controller.setTargetLibraryMember(targetMember);
+			controller.setAddButtonVisibilty(false);
+			controller.setEditButtonVisibilty(true);
+			
+			// Show the dialog and wait until the user closes it
+			dialogStage.showAndWait();
+
+		} catch (IOException e) {
+			// Exception gets thrown if the fxml file could not be loaded
+			e.printStackTrace();
+		}
+		
 	}
 }

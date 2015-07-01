@@ -38,6 +38,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			mainPrimaryStage = primaryStage;
+			mainPrimaryStage.setTitle("Library Workshop");
 			primaryStage.show();
 
 		} catch (Exception e) {
@@ -56,6 +57,7 @@ public class Main extends Application {
 		if (libraryMembers == null || libraryMembers.size() == 0) {
 			libraryMembers = new ArrayList<LibraryMember>();
 			LibraryMember libraryMember1 = new LibraryMember();
+			libraryMember1.setMemberId(9810);
 			libraryMember1.setFirstName("Walid");
 			libraryMember1.setLastName("Sultan");
 			libraryMember1.setPhone("6419808612");
@@ -66,6 +68,7 @@ public class Main extends Application {
 
 
 			LibraryMember libraryMember2 = new LibraryMember();
+			libraryMember2.setMemberId(9811);
 			libraryMember2.setFirstName("Yevheniy");
 			libraryMember2.setLastName("Rohozhnikov");
 			libraryMember2.setPhone("8885554545");

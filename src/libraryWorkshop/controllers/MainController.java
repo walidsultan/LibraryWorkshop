@@ -1,6 +1,7 @@
 package libraryWorkshop.controllers;
 
 import javafx.fxml.FXML;
+import libraryWorkshop.ui.Main;
 import libraryWorkshop.util.ScreenIndex;
 
 public class MainController implements BaseController {
@@ -14,5 +15,6 @@ public class MainController implements BaseController {
 	private void handleShowLibraryMembers(){
 		
 		 myController.setScreen(ScreenIndex.libraryMembersID);
+		 Main.mainPrimaryStage.setTitle("Library Members");
 	}
 }
