@@ -5,7 +5,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -68,7 +67,7 @@ public class LibraryMemberNewDialogController {
 
 		// Update Library Members table view
 		List<LibraryMember> libraryMembers = libraryMembersFacade
-				.getAllLibraryMembers();
+				.getAllItems();
 		libraryMembersTV.setItems(FXCollections
 				.observableArrayList(libraryMembers));
 
@@ -90,7 +89,7 @@ public class LibraryMemberNewDialogController {
 		
 		// Update Library Members table view
 				List<LibraryMember> libraryMembers = libraryMembersFacade
-						.getAllLibraryMembers();
+						.getAllItems();
 				libraryMembersTV.setItems(FXCollections
 						.observableArrayList(libraryMembers));
 				

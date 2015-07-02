@@ -7,7 +7,6 @@ import java.util.UUID;
 public class LibraryMember extends Person implements Serializable {
 	private CheckoutRecord record = new CheckoutRecord();
 	private int memberId;
-	private UUID id;
 
 	public LibraryMember() {
 		id = UUID.randomUUID();
@@ -26,9 +25,7 @@ public class LibraryMember extends Person implements Serializable {
 				+ lastName + ": " + record;
 	}
 
-	public UUID getId() {
-		return id;
-	}
+	
 
 	public int getMemberId() {
 		return memberId;

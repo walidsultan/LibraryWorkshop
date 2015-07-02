@@ -1,9 +1,14 @@
 package libraryWorkshop.models;
 
+import java.util.UUID;
+
 public class Author extends Person {
 
 	public String credentials;
 	
+	public Author() {
+		id = UUID.randomUUID();
+	}
 	
 	public String getCredentials() {
 		return credentials;

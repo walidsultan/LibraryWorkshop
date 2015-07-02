@@ -1,15 +1,21 @@
 package libraryWorkshop.models;
 
 import java.io.Serializable;
+import java.util.UUID;
 
-public class Person implements Serializable{
-	
+public class Person implements Serializable {
+
 	private static final long serialVersionUID = -3027484395558115688L;
-	
+
 	protected String firstName;
 	protected String lastName;
 	protected String phone;
 	protected Address address;
+	protected UUID id;
+
+	public UUID getId() {
+		return id;
+	}
 
 	public String getFirstName() {
 		return firstName;

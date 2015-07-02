@@ -30,7 +30,9 @@ public class Main extends Application {
 					ScreenIndex.mainScreenFile);
 			mainContainer.loadScreen(ScreenIndex.libraryMembersID,
 					ScreenIndex.libraryMembersFile);
-
+			mainContainer.loadScreen(ScreenIndex.authorsID,
+					ScreenIndex.authorsFile);
+			
 			mainContainer.setScreen(ScreenIndex.mainScreenID);
 
 			Group root = new Group();
@@ -50,9 +52,7 @@ public class Main extends Application {
 		LibraryMembersFacade libraryMembersFacade = new LibraryMembersFacade();
 
 		List<LibraryMember> libraryMembers = libraryMembersFacade
-				.getAllLibraryMembers();
-
-		
+				.getAllItems();
 
 		if (libraryMembers == null || libraryMembers.size() == 0) {
 			libraryMembers = new ArrayList<LibraryMember>();
@@ -65,8 +65,6 @@ public class Main extends Application {
 			libraryMember1.setAddress(address);
 			libraryMembersFacade.addLibraryMember(libraryMember1);
 
-
-
 			LibraryMember libraryMember2 = new LibraryMember();
 			libraryMember2.setMemberId(9811);
 			libraryMember2.setFirstName("Yevheniy");
@@ -76,10 +74,6 @@ public class Main extends Application {
 			libraryMember2.setAddress(address);
 			libraryMembersFacade.addLibraryMember(libraryMember2);
 		}
-
-//		BooksFacade booksFacade=new BooksFacade();
-//		
-//		List<Book> books=booksFacade.getAllBooks();
 		
 		launch(args);
 	}

@@ -4,13 +4,11 @@ import java.io.IOException;
 import java.util.List;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -52,7 +50,7 @@ public class LibraryMemebersController implements BaseController {
 	private void initialize() {
 		LibraryMembersFacade libraryMembersFacade = new LibraryMembersFacade();
 		List<LibraryMember> libraryMembers = libraryMembersFacade
-				.getAllLibraryMembers();
+				.getAllItems();
 
 		memberIdCol
 				.setCellValueFactory(new PropertyValueFactory<LibraryMember, Integer>(
@@ -131,7 +129,7 @@ public class LibraryMemebersController implements BaseController {
 	private void searchForLibraryMember() {
 		LibraryMembersFacade libraryMembersFacade = new LibraryMembersFacade();
 		List<LibraryMember> libraryMembers = libraryMembersFacade
-				.getAllLibraryMembers();
+				.getAllItems();
 
 		if (txtSearchMemberId.getText().matches("\\d+")) {
 

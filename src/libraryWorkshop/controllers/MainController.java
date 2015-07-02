@@ -10,11 +10,18 @@ public class MainController implements BaseController {
 	public void setScreenParent(ScreensController screenParent) {
 		myController = screenParent;
 	}
-	
+
 	@FXML
 	private void handleShowLibraryMembers(){
 		
 		 myController.setScreen(ScreenIndex.libraryMembersID);
 		 Main.mainPrimaryStage.setTitle("Library Members");
+	}
+	
+	@FXML
+	private void handleShowAuthors(){
+		
+		 myController.setScreen(ScreenIndex.authorsID);
+		 Main.mainPrimaryStage.setTitle("Authors");
 	}
 }

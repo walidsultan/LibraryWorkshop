@@ -1,24 +1,17 @@
 package libraryWorkshop.dataAccess;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
+
 import java.util.ArrayList;
-import java.util.List;
 
 import libraryWorkshop.models.Book;
-import libraryWorkshop.models.LibraryMember;
 
-public class BooksFacade extends DataAccessBase  {
+public class BooksFacade extends DataAccessBase implements BooksBehavior {
 
 	ArrayList<Book> allBooks = null;
 
 	public void addBook(Book book) {
 
-		allBooks = getAllBooks();
+		allBooks = getAllItems();
 		if (allBooks == null) {
 			allBooks = new ArrayList<Book>();
 		}
@@ -27,49 +20,25 @@ public class BooksFacade extends DataAccessBase  {
 		save(allBooks);
 	}
 
-	public ArrayList<Book> getAllBooks() {
-		ObjectInputStream in = null;
 
-		try {
-			Path path = FileSystems.getDefault().getPath(OUTPUT_DIR,
-					"Books");
-			if (path.toFile().isFile()) {
-				in = new ObjectInputStream(Files.newInputStream(path));
-				allBooks = (ArrayList<Book>) in.readObject();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (in != null) {
-				try {
-					in.close();
-				} catch (Exception e) {
-				}
-			}
-		}
-		return allBooks;
+	@Override
+	public Book getBook(String name) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	private void save(ArrayList<Book> list) {
-			
-		ObjectOutputStream out = null;
-		try {
-			Path path = FileSystems.getDefault().getPath(OUTPUT_DIR,
-					"Books");
-			out = new ObjectOutputStream(Files.newOutputStream(path));
-			out.writeObject(list);
-			
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (out != null) {
-				try {
-					out.close();
-				} catch (Exception e) {
-				}
-			}
-		}
+	@Override
+	public void deleteBook(int index) {
+		// TODO Auto-generated method stub
+		
 	}
+
+	@Override
+	public void editBook(Book currentBook) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	
 }
