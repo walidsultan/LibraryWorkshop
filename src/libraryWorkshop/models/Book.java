@@ -3,6 +3,8 @@ package libraryWorkshop.models;
 import java.io.Serializable;
 
 public class Book extends Publication implements Serializable {
+
+	
 	private int id;
 	private String isbn;
 	private boolean available;
@@ -18,4 +20,7 @@ public class Book extends Publication implements Serializable {
 	public String toString() {
 		return "id: " + id + ", isbn: " + isbn + ", available: " + available;
 	}
+	
+	
+	private static final long serialVersionUID = -697183216174030295L;
 }
