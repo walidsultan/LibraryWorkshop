@@ -34,7 +34,7 @@ public class Book extends Publication implements Serializable {
 
 	@Override
 	public String toString() {
-		return "isbn: " + isbn + ", available: " + isAvailable();
+		return "isbn: " + isbn ;
 	}
 
 	public UUID getAuthorId() {

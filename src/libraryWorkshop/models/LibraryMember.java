@@ -12,20 +12,10 @@ public class LibraryMember extends Person implements Serializable {
 		id = UUID.randomUUID();
 	}
 
-	public void checkout(LendableCopy copy, LocalDate checkoutDate,
-			LocalDate dueDate) {
-		CheckoutRecordEntry entry = new CheckoutRecordEntry(copy, checkoutDate,
-				dueDate);
-		record.addEntry(entry);
-
-	}
-
 	public String toString() {
 		return "Checkout record for library member " + firstName + " "
 				+ lastName + ": " + record;
 	}
-
-	
 
 	public int getMemberId() {
 		return memberId;

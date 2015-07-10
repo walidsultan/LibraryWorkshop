@@ -18,4 +18,7 @@ public final class ScreenIndex {
 	
 	public static String copiesID = "copies";
 	public static String copiesFile = "..\\views\\Copies.fxml";
+	
+	public static String checkoutPublicationID = "checkoutPublicationID";
+	public static String checkoutPublicationFile = "..\\views\\CheckoutPublication.fxml";
 }

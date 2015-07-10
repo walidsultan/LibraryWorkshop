@@ -12,7 +12,7 @@ abstract public class Publication implements Serializable {
 	private static final long serialVersionUID = 2010893663327964921L;
 	private LocalDate dateDue;
 	private String title;
-	private boolean isAvailable;
+
 
 	public void setTitle(String title) {
 		this.title = title;
@@ -25,23 +25,15 @@ abstract public class Publication implements Serializable {
 		dateDue = d;
 	}
 
-	public boolean isAvailable() {
-		return isAvailable;
-	}
-
-	public void setAvailable(boolean isAvailable) {
-		this.isAvailable = isAvailable;
-	}
-
 	public Publication() {
 		this.id = UUID.randomUUID();
-		this.isAvailable=true;
+		
 	}
 
 	public Publication(String title) {
 		this.title = title;
 		this.id = UUID.randomUUID();
-		this.isAvailable=true;
+		
 	}
 
 	public LocalDate getDateDue() {
@@ -68,7 +60,4 @@ abstract public class Publication implements Serializable {
 		return new SimpleStringProperty(this.title);
 	}
 
-	public StringProperty getIsAvailableProperty() {
-		return new SimpleStringProperty(isAvailable?"Yes":"No");
-	}
 }

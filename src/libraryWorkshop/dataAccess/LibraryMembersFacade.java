@@ -2,6 +2,7 @@ package libraryWorkshop.dataAccess;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import libraryWorkshop.models.LibraryMember;
 
@@ -18,6 +19,12 @@ public class LibraryMembersFacade extends DataAccessBase implements
 		return null;
 	}
 
+	public LibraryMember getLibraryMemberByMemberId(int memberId) {
+		List<LibraryMember> allMembers = getAllItems();
+		Optional<LibraryMember> libraryMember= allMembers.stream().filter(member-> member.getMemberId()== memberId).findAny();
+		return libraryMember.isPresent()? libraryMember.get(): null;
+	}
+	
 	public void deleteLibraryMember(int index) {
 		ArrayList<LibraryMember> allMembers = getAllItems();
 		allMembers.remove(index);

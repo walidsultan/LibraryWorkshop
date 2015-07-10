@@ -7,7 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 
 public class ScreensController extends StackPane {
-	// Holds the screens to be displayed
 
 	private HashMap<String, Node> screens = new HashMap<>();
 
@@ -15,12 +14,10 @@ public class ScreensController extends StackPane {
 		super();
 	}
 
-	// Add the screen to the collection
 	public void addScreen(String name, Node screen) {
 		screens.put(name, screen);
 	}
 
-	// Returns the Node with the appropriate name
 	public Node getScreen(String name) {
 		return screens.get(name);
 	}
@@ -55,11 +52,8 @@ public class ScreensController extends StackPane {
 
 	}
 
-	// This method will remove the screen with the given name from the
-	// collection of screens
 	public boolean unloadScreen(String name) {
 		if (screens.remove(name) == null) {
-			System.out.println("Screen didn't exist");
 			return false;
 		} else {
 			return true;

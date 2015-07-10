@@ -3,6 +3,8 @@ package libraryWorkshop.models;
 import java.io.Serializable;
 import java.util.UUID;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import libraryWorkshop.dataAccess.BooksFacade;
 import libraryWorkshop.dataAccess.PeriodicalsFacade;
 
@@ -12,9 +14,11 @@ public class Copy implements Serializable{
 	private String copyNo;
 	private UUID publicationId;
 	private UUID id;
+	private boolean isAvailable;
 
 	public Copy() {
 		this.id = UUID.randomUUID();
+		this.isAvailable=true;
 	}
 
 	public UUID getId() {
@@ -48,5 +52,20 @@ public class Copy implements Serializable{
 		}
 	}
 	
+	public boolean isAvailable() {
+		return isAvailable;
+	}
+
+	public void setAvailable(boolean isAvailable) {
+		this.isAvailable = isAvailable;
+	}
+
+	public StringProperty getIsAvailableProperty() {
+		return new SimpleStringProperty(isAvailable?"Yes":"No");
+	}
+	
+	public StringProperty getCopyNoProperty() {
+		return new SimpleStringProperty(this.copyNo);
+	}
 	private static final long serialVersionUID = 378233350002042303L;
 }

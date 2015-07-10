@@ -15,11 +15,12 @@
           <columns>
             <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="136.0" text="Copy Number" fx:id="copyNo" />
             <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="233.0" text="Publication Title" fx:id="title" />
+            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="233.0" text="Is Available" fx:id="isAvailable" />
           </columns>
         </TableView>
         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
           <children>
-            <TextField fx:id="txtSearchPublication" prefWidth="200.0" promptText="ISBN/Title/Issue Number)">
+            <TextField fx:id="txtSearchPublication" prefWidth="200.0" promptText="ISBN/Title/Issue Number">
               <VBox.margin>
                 <Insets left="25.0" />
               </VBox.margin>

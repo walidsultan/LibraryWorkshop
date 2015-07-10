@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import libraryWorkshop.dataAccess.BooksFacade;
 import libraryWorkshop.dataAccess.CopiesFacade;
 import libraryWorkshop.dataAccess.PeriodicalsFacade;
+import libraryWorkshop.models.Book;
 import libraryWorkshop.models.Copy;
 import libraryWorkshop.models.Publication;
 import libraryWorkshop.ui.Main;
@@ -37,6 +38,8 @@ public class CopiesController implements BaseController {
 	private TableColumn<Copy, String> copyNo;
 	@FXML
 	private TableColumn<Copy, String> title;
+	@FXML
+	private TableColumn<Copy, String> isAvailable;
 
 	public void setScreenParent(ScreensController screenParent) {
 		myController = screenParent;
@@ -53,6 +56,9 @@ public class CopiesController implements BaseController {
 		title.setCellValueFactory(cellData -> cellData.getValue()
 				.getPublication().getTitleProperty());
 
+		isAvailable.setCellValueFactory(cellData -> cellData.getValue()
+				.getIsAvailableProperty());
+		
 		copiesTV.setItems(FXCollections.observableArrayList(copies));
 	}
 

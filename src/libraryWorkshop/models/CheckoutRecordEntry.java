@@ -1,17 +1,22 @@
 package libraryWorkshop.models;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class CheckoutRecordEntry implements Serializable {
-	private LendableCopy copy;
-	private LocalDate checkoutDate;
-	private LocalDate dueDate;
-	public CheckoutRecordEntry(LendableCopy copy, LocalDate checkoutDate, LocalDate dueDate){ 
-		this.copy = copy;
-		this.checkoutDate = checkoutDate;
-		this.dueDate = dueDate;
+	
+	private static final long serialVersionUID = -5907907544731348280L;
+	private Copy copy;
+	private Date checkoutDate;
+	private Date dueDate;
+	public CheckoutRecordEntry(Copy copy, Date checkoutDate, Date dueDate){ 
+		this.setCopy(copy);
+		this.setCheckoutDate(checkoutDate);
+		this.setDueDate(dueDate);
 	}
 //	public String toString() {
 //		return "[" + "checkoutdate:" + 
@@ -19,4 +24,25 @@ public class CheckoutRecordEntry implements Serializable {
 //	        ", dueDate: " + dueDate.format(DateTimeFormatter.ofPattern(DataAccessFacade.DATE_PATTERN)) +
 //	        ", publication: " + copy + "]";
 //	}
+	public Copy getCopy() {
+		return copy;
+	}
+	public void setCopy(Copy copy) {
+		this.copy = copy;
+	}
+	public StringProperty getCheckoutDate() {
+		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+		return new SimpleStringProperty( sdf.format(checkoutDate));
+	}
+	public void setCheckoutDate(Date checkoutDate) {
+		this.checkoutDate = checkoutDate;
+	}
+	public StringProperty getDueDate() {
+
+		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+		return new SimpleStringProperty( sdf.format(dueDate));
+	}
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
+	}
 }

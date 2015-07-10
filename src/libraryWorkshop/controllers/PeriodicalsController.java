@@ -33,8 +33,6 @@ public class PeriodicalsController implements BaseController {
 	private TableColumn<Periodical, String> issueNumber;
 	@FXML
 	private TableColumn<Periodical, String> maxCheckoutLength;
-	@FXML
-	private TableColumn<Periodical, String> isAvailable;
 	
 	public void setScreenParent(ScreensController screenParent) {
 		myController = screenParent;
@@ -52,8 +50,6 @@ public class PeriodicalsController implements BaseController {
 		
 		maxCheckoutLength.setCellValueFactory(new PropertyValueFactory<Periodical, String>("maxCheckoutLength"));
 
-		isAvailable.setCellValueFactory(cellData -> cellData.getValue()
-				.getIsAvailableProperty());
 		
 		periodicalsTV.setItems(FXCollections
 				.observableArrayList(periodicals));

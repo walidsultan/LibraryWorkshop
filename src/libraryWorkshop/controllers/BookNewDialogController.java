@@ -14,9 +14,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import libraryWorkshop.dataAccess.AuthorsFacade;
 import libraryWorkshop.dataAccess.BooksFacade;
+import libraryWorkshop.dataAccess.CopiesFacade;
 import libraryWorkshop.models.Address;
 import libraryWorkshop.models.Author;
 import libraryWorkshop.models.Book;
+import libraryWorkshop.models.Copy;
 
 public class BookNewDialogController {
 
@@ -83,11 +85,21 @@ public class BookNewDialogController {
 		BooksFacade libraryBooksFacade = new BooksFacade();
 		libraryBooksFacade.addBook(book);
 
+		//Add corresponding copy
+		Copy copy = new Copy();
+		copy.setCopyNo("1");
+		copy.setPublicationId(book.getId());
+
+		CopiesFacade libraryCopiesFacade = new CopiesFacade();
+		libraryCopiesFacade.addCopy(copy);
+		
 		// Update Library Books table view
 		List<Book> libraryBooks = libraryBooksFacade.getAllItems();
 		libraryBooksTV
 				.setItems(FXCollections.observableArrayList(libraryBooks));
 
+		
+		
 		this.dialogStage.close();
 	}
 

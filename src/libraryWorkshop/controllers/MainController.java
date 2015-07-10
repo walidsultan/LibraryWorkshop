@@ -40,8 +40,18 @@ public class MainController implements BaseController {
 
 	@FXML
 	private void handleShowCopies() {
+
+		myController.unloadScreen(ScreenIndex.copiesID);
+		myController.loadScreen(ScreenIndex.copiesID, ScreenIndex.copiesFile);
+		
 		myController.setScreen(ScreenIndex.copiesID);
 		Main.mainPrimaryStage.setTitle("Copies");
+	}
+
+	@FXML
+	private void handleShowCheckoutPublication() {
+		myController.setScreen(ScreenIndex.checkoutPublicationID);
+		Main.mainPrimaryStage.setTitle("Checkout Publication");
 	}
 
 }

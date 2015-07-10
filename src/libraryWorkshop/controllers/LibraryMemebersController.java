@@ -16,7 +16,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import libraryWorkshop.dataAccess.CheckoutRecordsFacade;
 import libraryWorkshop.dataAccess.LibraryMembersFacade;
+import libraryWorkshop.models.CheckoutRecord;
 import libraryWorkshop.models.LibraryMember;
 import libraryWorkshop.ui.Main;
 import libraryWorkshop.util.ScreenIndex;
@@ -184,6 +186,68 @@ public class LibraryMemebersController implements BaseController {
 	{
 		 myController.setScreen(ScreenIndex.mainScreenID);
 		 Main.mainPrimaryStage.setTitle("Library Workshop");
+	}
+	
+	@FXML
+	private void getCheckoutRecordDialog(){
+		int selectedIndex = libraryMembersTV.getSelectionModel()
+				.getSelectedIndex();
+		
+		if (selectedIndex >= 0) {
+			LibraryMember member= libraryMembersTV.getItems().get(selectedIndex);
+			
+			CheckoutRecordsFacade checkoutRecordsFacade = new CheckoutRecordsFacade();
+			CheckoutRecord record= checkoutRecordsFacade.getCheckoutRecordByMemberId(member.getMemberId());
+			
+			if( record !=null){
+				showCheckoutRecordDialog(record);
+			}else
+			{
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("No checkout record found");
+				alert.setHeaderText(null);
+				alert.setContentText("No checkout data were found for the selected member.");
+				alert.showAndWait();
+			}
+			
+		} else {
+			// Nothing selected
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("No Library Member Selected");
+			alert.setHeaderText(null);
+			alert.setContentText("Please select a Library Member in the table.");
+			alert.showAndWait();
+		}
+	}
+	
+	private void showCheckoutRecordDialog(CheckoutRecord record) {
+		try {
+			// Load the fxml file and create a new stage for the popup
+			FXMLLoader loader = new FXMLLoader(
+					Main.class
+							.getResource("..\\views\\CheckoutRecordDialog.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Checkout Record");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(Main.mainPrimaryStage);
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			CheckoutRecordDialogController controller = loader
+					.getController();
+			controller.setDialogStage(dialogStage);
+			controller.setCheckoutRecord(record);
+			controller.loadData();
+			
+			// Show the dialog and wait until the user closes it
+			dialogStage.showAndWait();
+
+		} catch (IOException e) {
+			// Exception gets thrown if the fxml file could not be loaded
+			e.printStackTrace();
+		}
+		
 	}
 	
 	private void showEditLibraryMember(LibraryMember targetMember) {

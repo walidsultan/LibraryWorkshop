@@ -12,7 +12,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import libraryWorkshop.dataAccess.AuthorsFacade;
+import libraryWorkshop.dataAccess.CopiesFacade;
 import libraryWorkshop.dataAccess.PeriodicalsFacade;
+import libraryWorkshop.models.Copy;
 import libraryWorkshop.models.Periodical;
 
 public class PeriodicalNewDialogController {
@@ -59,6 +61,14 @@ public class PeriodicalNewDialogController {
 		PeriodicalsFacade libraryPeriodicalsFacade = new PeriodicalsFacade();
 		libraryPeriodicalsFacade.addPeriodical(periodical);
 
+		//Add corresponding copy
+		Copy copy = new Copy();
+		copy.setCopyNo("1");
+		copy.setPublicationId(periodical.getId());
+
+		CopiesFacade libraryCopiesFacade = new CopiesFacade();
+		libraryCopiesFacade.addCopy(copy);
+		
 		// Update Library Periodicals table view
 		List<Periodical> libraryPeriodicals = libraryPeriodicalsFacade.getAllItems();
 		libraryPeriodicalsTV
