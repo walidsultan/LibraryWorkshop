@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import libraryWorkshop.dataAccess.AuthorsFacade;
 import libraryWorkshop.models.Author;
 import libraryWorkshop.ui.Main;
+import libraryWorkshop.util.ScreenIndex;
 
 public class AuthorsController implements BaseController {
 	ScreensController myController;
@@ -140,6 +141,14 @@ public class AuthorsController implements BaseController {
 			alert.setContentText("Please select an Author in the table.");
 			alert.showAndWait();
 		}
+	}
+	
+
+	@FXML
+	private void navigateBack()
+	{
+		 myController.setScreen(ScreenIndex.mainScreenID);
+		 Main.mainPrimaryStage.setTitle("Library Workshop");
 	}
 	
 	private void showEditAuthor(Author targetAuthor) {

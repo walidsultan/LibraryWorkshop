@@ -12,16 +12,24 @@ public class MainController implements BaseController {
 	}
 
 	@FXML
-	private void handleShowLibraryMembers(){
-		
-		 myController.setScreen(ScreenIndex.libraryMembersID);
-		 Main.mainPrimaryStage.setTitle("Library Members");
+	private void handleShowLibraryMembers() {
+
+		myController.setScreen(ScreenIndex.libraryMembersID);
+		Main.mainPrimaryStage.setTitle("Library Members");
 	}
-	
+
 	@FXML
-	private void handleShowAuthors(){
-		
-		 myController.setScreen(ScreenIndex.authorsID);
-		 Main.mainPrimaryStage.setTitle("Authors");
+	private void handleShowAuthors() {
+
+		myController.setScreen(ScreenIndex.authorsID);
+		Main.mainPrimaryStage.setTitle("Authors");
 	}
+
+	@FXML
+	private void handleShowBooks() {
+
+		myController.setScreen(ScreenIndex.booksID);
+		Main.mainPrimaryStage.setTitle("Books");
+	}
+
 }

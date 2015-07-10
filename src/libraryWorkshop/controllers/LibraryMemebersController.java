@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import libraryWorkshop.dataAccess.LibraryMembersFacade;
 import libraryWorkshop.models.LibraryMember;
 import libraryWorkshop.ui.Main;
+import libraryWorkshop.util.ScreenIndex;
 
 public class LibraryMemebersController implements BaseController {
 	ScreensController myController;
@@ -176,6 +177,13 @@ public class LibraryMemebersController implements BaseController {
 			alert.setContentText("Please select a Library Member in the table.");
 			alert.showAndWait();
 		}
+	}
+	
+	@FXML
+	private void navigateBack()
+	{
+		 myController.setScreen(ScreenIndex.mainScreenID);
+		 Main.mainPrimaryStage.setTitle("Library Workshop");
 	}
 	
 	private void showEditLibraryMember(LibraryMember targetMember) {

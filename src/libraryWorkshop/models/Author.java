@@ -19,6 +19,11 @@ public class Author extends Person {
 		this.credentials = credentials;
 	}
 
+	
+
+	
+
+
 
 	private static final long serialVersionUID = -3506645484707943700L;
 

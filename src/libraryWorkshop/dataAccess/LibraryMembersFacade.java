@@ -11,7 +11,7 @@ public class LibraryMembersFacade extends DataAccessBase implements
 	public LibraryMember getLibraryMember(String name) {
 		List<LibraryMember> allMembers = getAllItems();
 		for (LibraryMember member : allMembers) {
-			if (member.getFirstName().concat(member.getLastName()).equals(name)) {
+			if (member.toString().equals(name)) {
 				return member;
 			}
 		}

@@ -23,7 +23,7 @@
         </TableView>
         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
           <children>
-            <TextField prefWidth="200.0" promptText="Member Id" fx:id="txtSearchMemberId">
+            <TextField fx:id="txtSearchMemberId" prefWidth="200.0" promptText="Member Id">
               <VBox.margin>
                 <Insets left="25.0" />
               </VBox.margin>
@@ -42,10 +42,11 @@
           <children>
             <Button mnemonicParsing="false" onAction="#showNewLibraryDialog" prefWidth="81.0" text="New" />
             <Button mnemonicParsing="false" onAction="#deleteLibraryMember" prefWidth="81.0" text="Delete" />
-            <Button mnemonicParsing="false" prefWidth="81.0" text="Edit"  onAction="#editLibraryMember"/>
+            <Button mnemonicParsing="false" onAction="#editLibraryMember" prefWidth="81.0" text="Edit" />
+            <Button mnemonicParsing="false" onAction="#navigateBack" prefWidth="81.0" text="Back" />
           </children>
           <padding>
-            <Insets left="25.0" right="25.0" top="220.0" />
+            <Insets left="25.0" right="25.0" top="170.0" />
           </padding>
         </VBox>
       </children>
