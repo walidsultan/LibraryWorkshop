@@ -38,4 +38,10 @@ public class MainController implements BaseController {
 		Main.mainPrimaryStage.setTitle("Periodicals");
 	}
 
+	@FXML
+	private void handleShowCopies() {
+		myController.setScreen(ScreenIndex.copiesID);
+		Main.mainPrimaryStage.setTitle("Copies");
+	}
+
 }

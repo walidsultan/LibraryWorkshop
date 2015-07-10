@@ -3,7 +3,10 @@ package libraryWorkshop.dataAccess;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
+import libraryWorkshop.models.Book;
 import libraryWorkshop.models.Periodical;
 
 public class PeriodicalsFacade extends DataAccessBase implements PeriodicalsBehavior {
@@ -28,6 +31,14 @@ public class PeriodicalsFacade extends DataAccessBase implements PeriodicalsBeha
 			}
 		}
 		return null;
+	}
+
+	public Periodical getPeriodical(UUID id) {
+		List<Periodical> allPeriodicals = getAllItems();
+		Optional<Periodical> foundPeriodical = allPeriodicals.stream()
+				.filter(periodical -> periodical.getId().equals(id)).findAny();
+
+		return foundPeriodical.isPresent() ? foundPeriodical.get() : null;
 	}
 
 	@Override

@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 abstract public class Publication implements Serializable {
 
 	private static final long serialVersionUID = 2010893663327964921L;
@@ -48,5 +51,9 @@ abstract public class Publication implements Serializable {
 
 	public void setMaxCheckoutLength(int maxCheckoutLength) {
 		this.maxCheckoutLength = maxCheckoutLength;
+	}
+	
+	public StringProperty getTitleProperty() {
+		return new SimpleStringProperty(this.title);
 	}
 }
