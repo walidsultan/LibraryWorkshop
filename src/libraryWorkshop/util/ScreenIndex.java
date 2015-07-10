@@ -12,4 +12,7 @@ public final class ScreenIndex {
 	
 	public static String booksID = "books";
 	public static String booksFile = "..\\views\\Books.fxml";
+	
+	public static String periodicalsID = "periodicals";
+	public static String periodicalsFile = "..\\views\\Periodicals.fxml";
 }

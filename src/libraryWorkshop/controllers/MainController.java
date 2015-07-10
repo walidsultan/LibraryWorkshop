@@ -32,4 +32,10 @@ public class MainController implements BaseController {
 		Main.mainPrimaryStage.setTitle("Books");
 	}
 
+	@FXML
+	private void handleShowPeriodicals() {
+		myController.setScreen(ScreenIndex.periodicalsID);
+		Main.mainPrimaryStage.setTitle("Periodicals");
+	}
+
 }
