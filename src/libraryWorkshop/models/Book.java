@@ -10,7 +10,9 @@ import libraryWorkshop.dataAccess.AuthorsFacade;
 public class Book extends Publication implements Serializable {
 
 	private String isbn;
-	private boolean available;
+
+	
+
 	private UUID authorId;
 
 	public Book() {
@@ -30,13 +32,9 @@ public class Book extends Publication implements Serializable {
 		this.isbn = isbn;
 	}
 
-	public void isAvailable(boolean b) {
-		available = b;
-	}
-
 	@Override
 	public String toString() {
-		return "isbn: " + isbn + ", available: " + available;
+		return "isbn: " + isbn + ", available: " + isAvailable();
 	}
 
 	public UUID getAuthorId() {

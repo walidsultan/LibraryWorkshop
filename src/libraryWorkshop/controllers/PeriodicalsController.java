@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import libraryWorkshop.dataAccess.PeriodicalsFacade;
+import libraryWorkshop.models.Book;
 import libraryWorkshop.models.Periodical;
 import libraryWorkshop.ui.Main;
 import libraryWorkshop.util.ScreenIndex;
@@ -32,7 +33,9 @@ public class PeriodicalsController implements BaseController {
 	private TableColumn<Periodical, String> issueNumber;
 	@FXML
 	private TableColumn<Periodical, String> maxCheckoutLength;
-
+	@FXML
+	private TableColumn<Periodical, String> isAvailable;
+	
 	public void setScreenParent(ScreensController screenParent) {
 		myController = screenParent;
 	}
@@ -48,6 +51,9 @@ public class PeriodicalsController implements BaseController {
 		issueNumber.setCellValueFactory(new PropertyValueFactory<Periodical, String>("issueNumber"));
 		
 		maxCheckoutLength.setCellValueFactory(new PropertyValueFactory<Periodical, String>("maxCheckoutLength"));
+
+		isAvailable.setCellValueFactory(cellData -> cellData.getValue()
+				.getIsAvailableProperty());
 		
 		periodicalsTV.setItems(FXCollections
 				.observableArrayList(periodicals));

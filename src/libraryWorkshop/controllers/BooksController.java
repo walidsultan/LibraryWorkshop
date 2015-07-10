@@ -34,7 +34,9 @@ public class BooksController implements BaseController {
 	private TableColumn<Book, String> author;
 	@FXML
 	private TableColumn<Book, String> maxCheckoutLength;
-
+	@FXML
+	private TableColumn<Book, String> isAvailable;
+	
 	public void setScreenParent(ScreensController screenParent) {
 		myController = screenParent;
 	}
@@ -54,6 +56,9 @@ public class BooksController implements BaseController {
 		
 		
 		maxCheckoutLength.setCellValueFactory(new PropertyValueFactory<Book, String>("maxCheckoutLength"));
+		
+		isAvailable.setCellValueFactory(cellData -> cellData.getValue()
+				.getIsAvailableProperty());
 		
 		booksTV.setItems(FXCollections
 				.observableArrayList(books));
