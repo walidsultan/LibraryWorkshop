@@ -24,6 +24,8 @@ public class Main extends Application {
 					.loadScreen(ScreenIndex.booksID, ScreenIndex.booksFile);
 			mainContainer
 			.loadScreen(ScreenIndex.periodicalsID, ScreenIndex.periodicalsFile);
+			mainContainer
+			.loadScreen(ScreenIndex.copiesID, ScreenIndex.copiesFile);
 
 			mainContainer.setScreen(ScreenIndex.mainScreenID);
 

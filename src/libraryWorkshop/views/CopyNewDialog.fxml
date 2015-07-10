@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="346.999977929685" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="libraryWorkshop.controllers.CopyNewDialogController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <GridPane hgap="20.0" layoutX="14.0" layoutY="0.0" prefHeight="333.0" prefWidth="459.0">
+      <children>
+        <Label alignment="CENTER" text="Publication Title" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
+        <Label fx:id="lblPublicationTitle" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label text="Copy Number" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+        <TextField fx:id="txtCopyNo" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <HBox prefHeight="100.0" prefWidth="200.0" spacing="25.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+          <children>
+            <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#handleAddCopy" prefWidth="56.0" text="Add" textOverrun="ELLIPSIS" />
+            <Button fx:id="btnEdit" mnemonicParsing="false" onAction="#handleEditCopy" text="Edit" visible="true" />
+            <Button mnemonicParsing="false" onAction="#handleClose" text="Cancel">
+              <HBox.margin>
+                <Insets />
+              </HBox.margin>
+            </Button>
+          </children>
+          <padding>
+            <Insets left="105.0" top="10.0" />
+          </padding>
+        </HBox>
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="323.0" minWidth="10.0" prefWidth="289.0" />
+      </columnConstraints>
+      <padding>
+        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+      </padding>
+      <rowConstraints>
+        <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+  </children>
+</AnchorPane>

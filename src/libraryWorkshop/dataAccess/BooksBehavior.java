@@ -5,7 +5,7 @@ import libraryWorkshop.models.Book;
 public interface BooksBehavior {
 	public void addBook(Book book);
 
-	public Book getBook(String name);
+	public Book getBookByTitle(String name);
 
 	public void deleteBook(int index);
 
