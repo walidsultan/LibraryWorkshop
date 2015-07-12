@@ -8,9 +8,13 @@ import javafx.beans.property.StringProperty;
 import libraryWorkshop.dataAccess.BooksFacade;
 import libraryWorkshop.dataAccess.PeriodicalsFacade;
 
-public class Copy implements Serializable{
-	
-	
+public class Copy implements Serializable {
+
+	@Override
+	public String toString() {
+		return getPublication().getTitle();
+	}
+
 	private String copyNo;
 	private UUID publicationId;
 	private UUID id;
@@ -18,7 +22,7 @@ public class Copy implements Serializable{
 
 	public Copy() {
 		this.id = UUID.randomUUID();
-		this.isAvailable=true;
+		this.isAvailable = true;
 	}
 
 	public UUID getId() {
@@ -51,7 +55,7 @@ public class Copy implements Serializable{
 			return periodicalsFacade.getPeriodical(publicationId);
 		}
 	}
-	
+
 	public boolean isAvailable() {
 		return isAvailable;
 	}
@@ -61,11 +65,12 @@ public class Copy implements Serializable{
 	}
 
 	public StringProperty getIsAvailableProperty() {
-		return new SimpleStringProperty(isAvailable?"Yes":"No");
+		return new SimpleStringProperty(isAvailable ? "Yes" : "No");
 	}
-	
+
 	public StringProperty getCopyNoProperty() {
 		return new SimpleStringProperty(this.copyNo);
 	}
+
 	private static final long serialVersionUID = 378233350002042303L;
 }

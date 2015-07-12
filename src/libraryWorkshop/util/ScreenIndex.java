@@ -21,4 +21,7 @@ public final class ScreenIndex {
 	
 	public static String checkoutPublicationID = "checkoutPublicationID";
 	public static String checkoutPublicationFile = "..\\views\\CheckoutPublication.fxml";
+	
+	public static String overdueCopiesID = "overdueCopiesID";
+	public static String overdueCopiesFile = "..\\views\\OverdueCopies.fxml";
 }

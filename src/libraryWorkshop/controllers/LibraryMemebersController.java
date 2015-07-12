@@ -236,7 +236,6 @@ public class LibraryMemebersController implements BaseController {
 
 			CheckoutRecordDialogController controller = loader
 					.getController();
-			controller.setDialogStage(dialogStage);
 			controller.setCheckoutRecord(record);
 			controller.loadData();
 			

@@ -54,4 +54,13 @@ public class MainController implements BaseController {
 		Main.mainPrimaryStage.setTitle("Checkout Publication");
 	}
 
+	@FXML
+	private void handleShowOverdueCopies() {
+		myController.unloadScreen(ScreenIndex.overdueCopiesID);
+		myController.loadScreen(ScreenIndex.overdueCopiesID,
+				ScreenIndex.overdueCopiesFile);
+		myController.setScreen(ScreenIndex.overdueCopiesID);
+		Main.mainPrimaryStage.setTitle("Overdue Copies");
+	}
+
 }

@@ -7,12 +7,6 @@ import javafx.stage.Stage;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import libraryWorkshop.controllers.ScreensController;
-import libraryWorkshop.dataAccess.BooksFacade;
-import libraryWorkshop.dataAccess.CopiesFacade;
-import libraryWorkshop.dataAccess.PeriodicalsFacade;
-import libraryWorkshop.models.Book;
-import libraryWorkshop.models.Copy;
-import libraryWorkshop.models.Periodical;
 import libraryWorkshop.util.ScreenIndex;
 
 public class Main extends Application {
@@ -43,6 +37,7 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			mainPrimaryStage = primaryStage;
 			mainPrimaryStage.setTitle("Library Workshop");
+			primaryStage.setResizable(false);
 			primaryStage.show();
 
 		} catch (Exception e) {
@@ -51,39 +46,6 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) {
-
-		CopiesFacade copiesFacade = new CopiesFacade();
-		
-//
-//		ArrayList<Copy> copies = copiesFacade.getAllItems();
-//		for (Copy copy : copies) {
-//			copy.setAvailable(true);
-//			copiesFacade.editCopy(copy);
-//		}
-
-//		BooksFacade booksFacade = new BooksFacade();
-//		ArrayList<Book> allBooks= booksFacade.getAllItems();
-//		
-//		PeriodicalsFacade periodicalsFacade = new PeriodicalsFacade();
-//		ArrayList<Periodical> allPeriodicals= periodicalsFacade.getAllItems();
-//		
-//		for(Book book : allBooks){
-//			Copy copy= new Copy();
-//			copy.setAvailable(true);
-//			copy.setCopyNo("1");
-//			copy.setPublicationId(book.getId());
-//			copiesFacade.addCopy(copy);
-//		}
-//		
-//
-//		for(Periodical book : allPeriodicals){
-//			Copy copy= new Copy();
-//			copy.setAvailable(true);
-//			copy.setCopyNo("1");
-//			copy.setPublicationId(book.getId());
-//			copiesFacade.addCopy(copy);
-//		}
-		
 		launch(args);
 	}
 }

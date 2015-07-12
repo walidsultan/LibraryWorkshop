@@ -3,6 +3,9 @@ package libraryWorkshop.models;
 import java.io.Serializable;
 import java.util.UUID;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Person implements Serializable {
 
 	private static final long serialVersionUID = -3027484395558115688L;
@@ -47,6 +50,14 @@ public class Person implements Serializable {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+	
+	public StringProperty getFirstNameProperty() {
+		return new SimpleStringProperty(firstName);
+	}
+	
+	public StringProperty getLastNameProperty() {
+		return new SimpleStringProperty(lastName);
 	}
 	
 	@Override
