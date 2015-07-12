@@ -1,11 +1,6 @@
 package libraryWorkshop.models;
 
 import java.io.Serializable;
-import java.util.UUID;
-
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import libraryWorkshop.dataAccess.AuthorsFacade;
 
 public class Periodical extends Publication implements Serializable {
 

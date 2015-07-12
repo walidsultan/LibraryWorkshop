@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import libraryWorkshop.models.CheckoutRecord;
 import libraryWorkshop.models.CheckoutRecordEntry;
 

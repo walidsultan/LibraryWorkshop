@@ -2,7 +2,6 @@ package libraryWorkshop.dataAccess;
 
 import java.util.UUID;
 
-import libraryWorkshop.models.Book;
 import libraryWorkshop.models.CheckoutRecord;
 
 public interface CheckoutRecordsBehavior {

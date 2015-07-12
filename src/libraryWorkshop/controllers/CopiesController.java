@@ -19,7 +19,6 @@ import javafx.stage.Stage;
 import libraryWorkshop.dataAccess.BooksFacade;
 import libraryWorkshop.dataAccess.CopiesFacade;
 import libraryWorkshop.dataAccess.PeriodicalsFacade;
-import libraryWorkshop.models.Book;
 import libraryWorkshop.models.Copy;
 import libraryWorkshop.models.Publication;
 import libraryWorkshop.ui.Main;

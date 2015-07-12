@@ -10,7 +10,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import libraryWorkshop.dataAccess.LibraryMembersFacade;
 import libraryWorkshop.models.Address;
-import libraryWorkshop.models.CheckoutRecord;
 import libraryWorkshop.models.LibraryMember;
 
 public class LibraryMemberNewDialogController {

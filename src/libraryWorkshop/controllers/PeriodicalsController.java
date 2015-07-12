@@ -16,7 +16,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import libraryWorkshop.dataAccess.PeriodicalsFacade;
-import libraryWorkshop.models.Book;
 import libraryWorkshop.models.Periodical;
 import libraryWorkshop.ui.Main;
 import libraryWorkshop.util.ScreenIndex;

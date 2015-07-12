@@ -1,17 +1,13 @@
 package libraryWorkshop.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import libraryWorkshop.dataAccess.AuthorsFacade;
 import libraryWorkshop.dataAccess.CopiesFacade;
 import libraryWorkshop.dataAccess.PeriodicalsFacade;
 import libraryWorkshop.models.Copy;

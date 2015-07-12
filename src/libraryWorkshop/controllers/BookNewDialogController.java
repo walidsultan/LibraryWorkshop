@@ -2,7 +2,6 @@ package libraryWorkshop.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,7 +14,6 @@ import javafx.stage.Stage;
 import libraryWorkshop.dataAccess.AuthorsFacade;
 import libraryWorkshop.dataAccess.BooksFacade;
 import libraryWorkshop.dataAccess.CopiesFacade;
-import libraryWorkshop.models.Address;
 import libraryWorkshop.models.Author;
 import libraryWorkshop.models.Book;
 import libraryWorkshop.models.Copy;
