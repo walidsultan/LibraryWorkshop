@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import libraryWorkshop.models.Book;
 import libraryWorkshop.models.Copy;
-import libraryWorkshop.models.Periodical;
-import libraryWorkshop.models.Publication;
 
 public class CopiesFacade extends DataAccessBase implements CopiesBehavior {
 
@@ -24,39 +21,15 @@ public class CopiesFacade extends DataAccessBase implements CopiesBehavior {
 	@Override
 	public Copy getCopy(String copyNo) {
 		List<Copy> allCopies = getAllItems();
-		for (Copy copy : allCopies) {
-			if (copy.getCopyNo().equals(copyNo)) {
-				return copy;
-			}
-		}
-		return null;
+		Optional<Copy> foundCopy = LambdaLibrary.getCopyByCopyNo.apply(allCopies,copyNo);
+	
+		return foundCopy.isPresent() ? foundCopy.get() : null;
 	}
 
 	public Copy searchCopy(String publicationInfo) {
 		List<Copy> allCopies = getAllItems();
-		Optional<Copy> targetCopy = allCopies
-				.stream()
-				.filter(copy -> {
-					if (copy.isAvailable()) {
-						Publication publication = copy.getPublication();
-						if (publication.getTitle().equals(publicationInfo)) {
-							return true;
-						}
-
-						if (publication.getClass() == Book.class) {
-							if (((Book) publication).getIsbn().equals(
-									publicationInfo)) {
-								return true;
-							}
-						} else if (publication.getClass() == Periodical.class) {
-							if (((Periodical) publication).getIssueNumber()
-									.equals(publicationInfo)) {
-								return true;
-							}
-						}
-					}
-					return false;
-				}).findAny();
+		Optional<Copy> targetCopy = LambdaLibrary.searchCopy.apply(allCopies,
+				publicationInfo);
 
 		return targetCopy.isPresent() ? targetCopy.get() : null;
 	}
@@ -82,5 +55,4 @@ public class CopiesFacade extends DataAccessBase implements CopiesBehavior {
 		save(allCopies);
 	}
 
-	
 }

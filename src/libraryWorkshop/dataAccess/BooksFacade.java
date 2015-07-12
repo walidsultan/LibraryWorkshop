@@ -22,25 +22,25 @@ public class BooksFacade extends DataAccessBase implements BooksBehavior {
 	@Override
 	public Book getBookByTitle(String title) {
 		List<Book> allBooks = getAllItems();
-		for (Book book : allBooks) {
-			if (book.getTitle().equals(title)) {
-				return book;
-			}
-		}
-		return null;
+
+		Optional<Book> foundBook = LambdaLibrary.getBookByTitle.apply(allBooks,
+				title);
+		return foundBook.isPresent() ? foundBook.get() : null;
 	}
 
 	public Book getBookByISBN(String isbn) {
 		List<Book> allBooks = getAllItems();
-		Optional<Book> foundBook = allBooks.stream()
-				.filter(book -> book.getIsbn().equals(isbn)).findAny();
+		Optional<Book> foundBook = LambdaLibrary.getBookByISBN.apply(allBooks,
+				isbn);
+
 		return foundBook.isPresent() ? foundBook.get() : null;
 	}
 
 	public Book getBook(UUID id) {
 		List<Book> allBooks = getAllItems();
-		Optional<Book> foundBook = allBooks.stream()
-				.filter(book -> book.getId().equals(id)).findAny();
+
+		Optional<Book> foundBook = LambdaLibrary.getBookById.apply(allBooks,
+				id);
 
 		return foundBook.isPresent() ? foundBook.get() : null;
 	}

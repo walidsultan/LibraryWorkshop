@@ -11,20 +11,19 @@ public class LibraryMembersFacade extends DataAccessBase implements
 
 	public LibraryMember getLibraryMember(String name) {
 		List<LibraryMember> allMembers = getAllItems();
-		for (LibraryMember member : allMembers) {
-			if (member.toString().equals(name)) {
-				return member;
-			}
-		}
-		return null;
+
+		Optional<LibraryMember> libraryMember = LambdaLibrary.getLibraryMemberByName
+				.apply(allMembers, name);
+		return libraryMember.isPresent() ? libraryMember.get() : null;
 	}
 
 	public LibraryMember getLibraryMemberByMemberId(int memberId) {
 		List<LibraryMember> allMembers = getAllItems();
-		Optional<LibraryMember> libraryMember= allMembers.stream().filter(member-> member.getMemberId()== memberId).findAny();
-		return libraryMember.isPresent()? libraryMember.get(): null;
+		Optional<LibraryMember> libraryMember = LambdaLibrary.getLibraryMemberByMemberId
+				.apply(allMembers, memberId);
+		return libraryMember.isPresent() ? libraryMember.get() : null;
 	}
-	
+
 	public void deleteLibraryMember(int index) {
 		ArrayList<LibraryMember> allMembers = getAllItems();
 		allMembers.remove(index);
@@ -41,7 +40,7 @@ public class LibraryMembersFacade extends DataAccessBase implements
 	}
 
 	public void editLibraryMember(LibraryMember currentMember) {
-		ArrayList<LibraryMember> allMembers = getAllItems(); 
+		ArrayList<LibraryMember> allMembers = getAllItems();
 
 		for (int i = 0; i < allMembers.size(); i++) {
 			if (allMembers.get(i).getId().equals(currentMember.getId())) {
