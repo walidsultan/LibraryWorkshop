@@ -14,6 +14,10 @@ public class LibraryMember extends Person implements Serializable {
 		id = UUID.randomUUID();
 	}
 
+	public void setId(UUID id) {
+		this.id = id;
+	}
+
 	public String toString() {
 		return "Checkout record for library member " + firstName + " "
 				+ lastName + ": " + record;

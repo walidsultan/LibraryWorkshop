@@ -100,6 +100,7 @@ public class LibraryMemebersController implements BaseController {
 			controller.setLibraryMembersTV(libraryMembersTV);
 			controller.setAddButtonVisibilty(true);
 			controller.setEditButtonVisibilty(false);
+			controller.setMemberIdState(false);
 			
 			// Show the dialog and wait until the user closes it
 			dialogStage.showAndWait();
@@ -270,6 +271,7 @@ public class LibraryMemebersController implements BaseController {
 			controller.setTargetLibraryMember(targetMember);
 			controller.setAddButtonVisibilty(false);
 			controller.setEditButtonVisibilty(true);
+			controller.setMemberIdState(true);
 			
 			// Show the dialog and wait until the user closes it
 			dialogStage.showAndWait();

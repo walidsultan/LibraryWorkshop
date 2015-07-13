@@ -15,7 +15,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import libraryWorkshop.dataAccess.CopiesFacade;
 import libraryWorkshop.dataAccess.PeriodicalsFacade;
+import libraryWorkshop.models.Book;
 import libraryWorkshop.models.Periodical;
 import libraryWorkshop.ui.Main;
 import libraryWorkshop.util.ScreenIndex;
@@ -87,8 +89,14 @@ public class PeriodicalsController implements BaseController {
 	private void deletePeriodical() {
 		int selectedIndex = periodicalsTV.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
+			Periodical selectedPeriodical= periodicalsTV.getItems().get(selectedIndex);
+			
 			PeriodicalsFacade libraryMembersFacade = new PeriodicalsFacade();
 			libraryMembersFacade.deletePeriodical(selectedIndex);
+		
+			CopiesFacade copiesFacade = new CopiesFacade();
+			copiesFacade.deleteCopyByPublicationId(selectedPeriodical.getId());
+			
 			periodicalsTV.getItems().remove(selectedIndex);
 		} else {
 			// Nothing selected

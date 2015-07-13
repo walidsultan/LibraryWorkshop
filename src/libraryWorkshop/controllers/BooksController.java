@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import libraryWorkshop.dataAccess.BooksFacade;
+import libraryWorkshop.dataAccess.CopiesFacade;
 import libraryWorkshop.models.Book;
 import libraryWorkshop.ui.Main;
 import libraryWorkshop.util.ScreenIndex;
@@ -92,8 +93,14 @@ public class BooksController implements BaseController {
 	private void deleteBook() {
 		int selectedIndex = booksTV.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
+			Book selectedBook= booksTV.getItems().get(selectedIndex);
+			
 			BooksFacade libraryMembersFacade = new BooksFacade();
 			libraryMembersFacade.deleteBook(selectedIndex);
+			
+			CopiesFacade copiesFacade = new CopiesFacade();
+			copiesFacade.deleteCopyByPublicationId(selectedBook.getId());
+			
 			booksTV.getItems().remove(selectedIndex);
 		} else {
 			// Nothing selected

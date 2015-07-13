@@ -3,6 +3,7 @@ package libraryWorkshop.dataAccess;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import libraryWorkshop.models.Copy;
 
@@ -21,8 +22,9 @@ public class CopiesFacade extends DataAccessBase implements CopiesBehavior {
 	@Override
 	public Copy getCopy(String copyNo) {
 		List<Copy> allCopies = getAllItems();
-		Optional<Copy> foundCopy = LambdaLibrary.getCopyByCopyNo.apply(allCopies,copyNo);
-	
+		Optional<Copy> foundCopy = LambdaLibrary.getCopyByCopyNo.apply(
+				allCopies, copyNo);
+
 		return foundCopy.isPresent() ? foundCopy.get() : null;
 	}
 
@@ -38,6 +40,17 @@ public class CopiesFacade extends DataAccessBase implements CopiesBehavior {
 	public void deleteCopy(int index) {
 		ArrayList<Copy> allCopies = getAllItems();
 		allCopies.remove(index);
+		save(allCopies);
+	}
+
+	public void deleteCopyByPublicationId(UUID publicationId) {
+		ArrayList<Copy> allCopies = getAllItems();
+		Optional<Copy> targetCopy = allCopies.stream()
+				.filter(c -> c.getPublicationId().equals(publicationId))
+				.findAny();
+		if (targetCopy.isPresent()) {
+			allCopies.remove(targetCopy.get());
+		}
 		save(allCopies);
 	}
 

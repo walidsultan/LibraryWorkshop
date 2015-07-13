@@ -123,5 +123,9 @@ public class LibraryMemberNewDialogController {
 		this.btnEdit.visibleProperty().set(visible);
 	}
 
+	public void setMemberIdState(boolean isDisabled) {
+		this.txtMemberId.setDisable(isDisabled);
+	}
+
 
 }

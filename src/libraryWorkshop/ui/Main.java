@@ -1,12 +1,15 @@
 package libraryWorkshop.ui;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import libraryWorkshop.controllers.ScreensController;
+import libraryWorkshop.dataAccess.LibraryMembersFacade;
+import libraryWorkshop.models.LibraryMember;
 import libraryWorkshop.util.ScreenIndex;
 
 public class Main extends Application {
