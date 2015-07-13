@@ -2,10 +2,15 @@ package libraryWorkshop.controllers;
 
 import java.util.Calendar;
 import java.util.Date;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 import libraryWorkshop.dataAccess.CheckoutRecordsFacade;
 import libraryWorkshop.dataAccess.CopiesFacade;
 import libraryWorkshop.dataAccess.LibraryMembersFacade;
@@ -23,7 +28,16 @@ public class CheckoutPublicationController implements BaseController {
 	private TextField txtMemberId;
 
 	@FXML
-	private TextField txtPublication;
+	private TextField txtPublicationTitle;
+
+	@FXML
+	private TextField txtIssueNumber;
+
+	@FXML
+	private Label lblIssueNumber;
+
+	@FXML
+	private RadioButton periodicalRadioButton;
 
 	public void setScreenParent(ScreensController screenParent) {
 		myController = screenParent;
@@ -71,7 +85,8 @@ public class CheckoutPublicationController implements BaseController {
 				checkoutRecordsFacade.editCheckoutRecord(memberRecord);
 
 				txtMemberId.setText("");
-				txtPublication.setText("");
+				txtPublicationTitle.setText("");
+				txtIssueNumber.setText("");
 				showAlert("Checkout Success", "The copy "
 						+ copy.getPublication().getTitle()
 						+ " was checked out successfully.");
@@ -96,7 +111,8 @@ public class CheckoutPublicationController implements BaseController {
 	private Copy getTargetCopy() {
 		CopiesFacade copiesFacade = new CopiesFacade();
 
-		Copy targetCopy = copiesFacade.searchCopy(txtPublication.getText());
+		Copy targetCopy = copiesFacade.searchCopy(
+				txtPublicationTitle.getText(), txtIssueNumber.getText());
 		if (targetCopy == null) {
 			showAlert(
 					"Wrong Input",
@@ -113,11 +129,17 @@ public class CheckoutPublicationController implements BaseController {
 			showAlert("Wrong Input", "Please enter valid Member Id.");
 		}
 
-		if (txtPublication.getText().isEmpty()) {
+		if (txtPublicationTitle.getText().isEmpty()) {
 			isValid = false;
 
 			showAlert("Wrong Input",
 					"Please enter valid publication ISBN, title or issue number.");
+		}
+
+		if (periodicalRadioButton.isSelected()
+				&& txtIssueNumber.getText().isEmpty()) {
+			isValid = false;
+			showAlert("Wrong Input", "Please enter valid issue number.");
 		}
 
 		return isValid;
@@ -135,6 +157,19 @@ public class CheckoutPublicationController implements BaseController {
 	private void navigateBack() {
 		myController.setScreen(ScreenIndex.mainScreenID);
 		Main.mainPrimaryStage.setTitle("Library Workshop");
+	}
+
+	@FXML
+	private void setBookType() {
+		txtIssueNumber.visibleProperty().set(false);
+		lblIssueNumber.visibleProperty().set(false);
+		txtIssueNumber.setText("");
+	}
+
+	@FXML
+	private void setPeriodicalType() {
+		txtIssueNumber.visibleProperty().set(true);
+		lblIssueNumber.visibleProperty().set(true);
 	}
 
 }

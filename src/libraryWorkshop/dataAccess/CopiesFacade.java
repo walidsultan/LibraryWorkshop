@@ -28,10 +28,10 @@ public class CopiesFacade extends DataAccessBase implements CopiesBehavior {
 		return foundCopy.isPresent() ? foundCopy.get() : null;
 	}
 
-	public Copy searchCopy(String publicationInfo) {
+	public Copy searchCopy(String publicationTitle,String issueNumber) {
 		List<Copy> allCopies = getAllItems();
 		Optional<Copy> targetCopy = LambdaLibrary.searchCopy.apply(allCopies,
-				publicationInfo);
+				publicationTitle,issueNumber);
 
 		return targetCopy.isPresent() ? targetCopy.get() : null;
 	}

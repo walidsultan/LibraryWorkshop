@@ -76,24 +76,27 @@ public class LambdaLibrary {
 			list, copyNo) -> list.stream()
 			.filter(copy -> copy.getCopyNo().equals(copyNo)).findAny();
 
-	public static BiFunction<List<Copy>, String, Optional<Copy>> searchCopy = (
-			list, publicationInfo) -> list
+	public static TriFunction<List<Copy>, String, String, Optional<Copy>> searchCopy = (
+			list, publicationTitle, issueNumber) -> list
 			.stream()
 			.filter(copy -> {
 				if (copy.isAvailable()) {
 					Publication publication = copy.getPublication();
-					if (publication.getTitle().equals(publicationInfo)) {
+					if (publication.getTitle().equals(publicationTitle)
+							&& issueNumber.isEmpty()) {
 						return true;
 					}
 
 					if (publication.getClass() == Book.class) {
 						if (((Book) publication).getIsbn().equals(
-								publicationInfo)) {
+								publicationTitle)) {
 							return true;
 						}
 					} else if (publication.getClass() == Periodical.class) {
 						if (((Periodical) publication).getIssueNumber().equals(
-								publicationInfo)) {
+								issueNumber)
+								&& ((Periodical) publication).getTitle()
+										.equals(publicationTitle)) {
 							return true;
 						}
 					}

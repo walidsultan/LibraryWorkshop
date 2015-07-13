@@ -36,6 +36,7 @@ public class BooksController implements BaseController {
 	@FXML
 	private TableColumn<Book, String> maxCheckoutLength;
 	
+	
 	public void setScreenParent(ScreensController screenParent) {
 		myController = screenParent;
 	}
